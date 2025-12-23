@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Comment(models.Model):
     text = models.TextField()
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(
         to='users.User',
         on_delete=models.CASCADE,

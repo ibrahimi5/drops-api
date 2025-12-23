@@ -16,10 +16,10 @@ class CategoryIndexView(APIView):
 class PostByCategoryView(APIView):
     def get(self, request, pk):
         try:
-            categories = Category.objects.get(pk=pk)  # fetch single Category
+            category = Category.objects.get(pk=pk)  # fetch single Category
         except Category.DoesNotExist:
             raise NotFound(detail="Category not found.")
     
-        posts = Post.objects.filter(categories=categories)
+        posts = Post.objects.filter(category=category)
         serializer = PopulatedPostSerializer(posts, many=True)
         return Response(serializer.data)

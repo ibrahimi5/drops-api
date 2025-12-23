@@ -10,11 +10,13 @@ from rest_framework.exceptions import NotFound
 class PostShowView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     
+        #INDEX route    
     def get(self, request):
-        posts = Post.objects.all()              
-        serializer = PopulatedPostSerializer(posts, many=True)  
-        return Response(serializer.data) 
+      posts = Post.objects.all()              
+      serializer = PopulatedPostSerializer(posts, many=True)  
+      return Response(serializer.data) 
 
+        #CREATE route
     def post(self, request):
       request.data['owner'] = request.user.id
       serializer = PostSerializer(data=request.data)

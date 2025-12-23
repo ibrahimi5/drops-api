@@ -6,9 +6,10 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.URLField(blank=True)
-    categories = models.ManyToManyField(
+    category = models.ForeignKey(
         to='categories.Category',
-        related_name='post_categories'
+        on_delete=models.DO_NOTHING,
+        related_name='post_category'
     )
     owner = models.ForeignKey(
         to='users.User',
